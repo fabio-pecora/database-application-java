@@ -14,25 +14,25 @@ public class DatabaseApplication {
       Connection connection = DriverManager.getConnection(url, user, password);
       
       // Insert into the table
-      String insertSql = "INSERT INTO " + table + " (name, email) VALUES (?, ?)";
+      String insertSql = "INSERT INTO " + table + " (username, email) VALUES (?, ?)";
       PreparedStatement insertStmt = connection.prepareStatement(insertSql);
-      insertStmt.setString(1, "John");
-      insertStmt.setString(2, "john@example.com");
+      insertStmt.setString(1, "fabio");
+      insertStmt.setString(2, "fabio@gmail.com");
       insertStmt.executeUpdate();
       
       // Select from the table using a WHERE clause with parameterized fields
-      String selectSql = "SELECT * FROM " + table + " WHERE name = ? AND email = ?";
+      String selectSql = "SELECT * FROM " + table + " WHERE username = ? AND email = ?";
       PreparedStatement selectStmt = connection.prepareStatement(selectSql);
-      selectStmt.setString(1, "John");
-      selectStmt.setString(2, "john@example.com");
+      selectStmt.setString(1, "Fabio");
+      selectStmt.setString(2, "fabio@gmail.com");
       ResultSet resultSet = selectStmt.executeQuery();
       
       // Display results of the select
       while (resultSet.next()) {
         int id = resultSet.getInt("id");
-        String name = resultSet.getString("name");
+        String username = resultSet.getString("username");
         String email = resultSet.getString("email");
-        System.out.println("id: " + id + ", name: " + name + ", email: " + email);
+        System.out.println("id: " + id + ", username: " + username + ", email: " + email);
       }
       
       // Close resources
